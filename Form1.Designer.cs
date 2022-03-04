@@ -43,6 +43,8 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
+            this.richTextBox4 = new System.Windows.Forms.RichTextBox();
+            this.button6 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // richTextBox1
@@ -85,7 +87,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(916, 569);
+            this.button4.Location = new System.Drawing.Point(722, 573);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(162, 70);
             this.button4.TabIndex = 4;
@@ -142,7 +144,7 @@
             // 
             // richTextBox3
             // 
-            this.richTextBox3.Location = new System.Drawing.Point(805, 467);
+            this.richTextBox3.Location = new System.Drawing.Point(611, 471);
             this.richTextBox3.Name = "richTextBox3";
             this.richTextBox3.Size = new System.Drawing.Size(385, 96);
             this.richTextBox3.TabIndex = 11;
@@ -174,11 +176,31 @@
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
+            // richTextBox4
+            // 
+            this.richTextBox4.Location = new System.Drawing.Point(1002, 471);
+            this.richTextBox4.Name = "richTextBox4";
+            this.richTextBox4.Size = new System.Drawing.Size(385, 96);
+            this.richTextBox4.TabIndex = 16;
+            this.richTextBox4.Text = "";
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(1113, 573);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(162, 70);
+            this.button6.TabIndex = 15;
+            this.button6.Text = "Получить информацию об отправленных сообщениях";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1836, 850);
+            this.Controls.Add(this.richTextBox4);
+            this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBox4);
@@ -218,6 +240,8 @@
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.RichTextBox richTextBox4;
+        private System.Windows.Forms.Button button6;
     }
 }
 

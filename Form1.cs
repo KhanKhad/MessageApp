@@ -78,7 +78,10 @@ namespace MessageApp
             richTextBox1.Text += openkey + "\n";
             richTextBox1.Text += closekey + "\n";
         }
-
+        private void button6_Click(object sender, EventArgs e)
+        {
+            richTextBox4.Text += GetInformAboutSendedMessages(textBox1.Text, textBox2.Text, openkey, richTextBox1);
+        }
 
         public static string Registration(string uri, string name, string pass, string openkey, string closekey, RichTextBox richTextBox)
         {
@@ -134,6 +137,18 @@ namespace MessageApp
         public static string GetMessage(string uri, string myname, string openkey, RichTextBox richTextBox)
         {
             string BaseUri = uri + "getmessages";
+            string json = "";
+            string _openkey = GetResponseString(uri + "getkey", json).Split(':')[1].Trim('}').Trim('"');
+            string _name = encript(myname, _openkey);
+            json = "{" + $"\"Name\":\"{_name}\", \"openkey\":\"{openkey}\"" + "}";
+            string answer = GetResponseString(BaseUri, json);
+            richTextBox.Text += answer + "\n";
+            return answer;
+        }
+
+        public static string GetInformAboutSendedMessages(string uri, string myname, string openkey, RichTextBox richTextBox)
+        {
+            string BaseUri = uri + "checkMessagesInfo";
             string json = "";
             string _openkey = GetResponseString(uri + "getkey", json).Split(':')[1].Trim('}').Trim('"');
             string _name = encript(myname, _openkey);
@@ -302,5 +317,6 @@ namespace MessageApp
             }
         }
 
+        
     }
 }
