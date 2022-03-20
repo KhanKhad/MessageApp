@@ -76,48 +76,46 @@ namespace MessageApp
 
         private void button4_Click(object sender, EventArgs e)
         {
-            //string op = "D:\\download\\publicKey.pem";
-            //string pop = "D:\\download\\privateKey.pem";
-
-
-
-
+            { /*
+            string op = "D:\\download\\publicKey.pem";
+            string pop = "D:\\download\\privateKey.pem";
 
             string op = "-----BEGIN RSA PUBLIC KEY-----MIIBCgKCAQEAj/ggukI20t7asxRrBoJmhIQVVQ31FXIS8y1xW+DXzKxEYgr52dlLzQ9DN1N53vdqGO3hL+CdezNLfk3N+jt+2XFmNlnWwIBW4BztIxwPE4bXhCMyTYg+14ZyK8BA3Jbm6XWMVbnmOwfAf1KVCLgUVcCoEfg9ncOIOpwR1ZdOv9V3pAGipoPvWB3KJKuOlnREotbJgug7YklX0LMnWIEN6VrEbXSWw6HFEROR+Kfazd+Bz3yaJBEQFxj6PHTh9LKEwTVobyac0B+QVa+kVuA8u5XgoKijIR0SuQmpdLI4+K8skxRPWedwWTj4iUfDg3uiPUcVaDn3nU96WGSFjonzOQIDAQAB-----END RSA PUBLIC KEY-----";
+            string op = "-----BEGIN PUBLIC KEY-----MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCj5NuNZtPWRrfOp8lW01Ptd9TYliqVcbzdqrmROu6m+jfmUrByGP6owSbdND1bg4D9UOYmwQ+gdOKsAZNaN6hndzVQnoT8V5aOS/hW126gF3CPPmCMgRqSn6+wQ2VlnyTXvNbq981fsZ5eEE6J5VlbjTOLON6ZrCJO0kRIaO4IyQIDAQAB-----END PUBLIC KEY-----";
+            string pop = "-----BEGIN RSA PRIVATE KEY-----MIIEowIBAAKCAQEAj/ggukI20t7asxRrBoJmhIQVVQ31FXIS8y1xW+DXzKxEYgr52dlLzQ9DN1N53vdqGO3hL+CdezNLfk3N+jt+2XFmNlnWwIBW4BztIxwPE4bXhCMyTYg+14ZyK8BA3Jbm6XWMVbnmOwfAf1KVCLgUVcCoEfg9ncOIOpwR1ZdOv9V3pAGipoPvWB3KJKuOlnREotbJgug7YklX0LMnWIEN6VrEbXSWw6HFEROR+Kfazd+Bz3yaJBEQFxj6PHTh9LKEwTVobyac0B+QVa+kVuA8u5XgoKijIR0SuQmpdLI4+K8skxRPWedwWTj4iUfDg3uiPUcVaDn3nU96WGSFjonzOQIDAQABAoIBADoPMTecK1rX96+fjNfHr8tCLw4pfkyDQAQkr+IDJ1QJptw5G/CQUqLkRFGkDvJtqbJbAGTb+vZrxcauXuJKqwnK0xMZIONp/l8MG0/86VGRIAnQXeFpkBo/xHxDYIT1MDM3LfyGZ0QoCKfwKF0nS0AX3U+94i9k4uPr+7888UuoElxuA54HE6BZgJzFKpRP5jAymfPRtCDZgJtjc+XlfLeLGLG2QX3Hw9ItiXWzLo6rzFZqC0sj/LmLNHaps7UuuvzIG4p/Eb579SEEmua635KBdIuPrmsiMO+lmstIGgpWMY6lZ7TFKlQqrYtRqkYhgIOSBEIHV0DXk+4uuxLfp18CgYEAxUgJmH/c8JCgsP8I3U/J4t0COkwUx2tUOQXzGK1L+yXjLVNRREbYYCK0skh60HLASCILGrP7W2QxY8n0o1SpvzEloX8IljMPb62cqFKmRwOsYSX0l+eJJAAEMliicnro7k12Q0WRdiqOjNY0XxVX1+z6iNuVEFXhvYaKYlCDYScCgYEAutHxSbdGOC4Y/MiI0APmLybr4xZXjF5P8CFKX2i7fxzLaqxxXwfZJJiniHeMoqhRLnf1JSHRaP8Ytzs3NlvvuMHuCYFHFAdAEWuj2KxhTVIyltFjI/hPwYJmmThxaxQyrkFJvE15xX8B46/KRUvMvBHKB6U1D0L7/tBTMVC0BJ8CgYEArq/GB2oZCk8WawO5JraTDrYiVdquf5KTJlcVVeGFqSJ4Udc325xb1myE0mUJkvA5QOYcLQ334YoLjc/zNnkuQaTULHde9BjMb1gsooNkxvcCuZcxSRz1O5JkJOyFE5ewD+s5cAH29spiJWU7RIKSoRkvEuZUzP0vAXJTsRCX9PsCgYBi7t8KnKXxBmhxJXleP1Jc0g3FOoWubhuDHP4XvIzeac9HdH6tRqi1eqnt2PF/CgfDxf7qZRhStBTQo+k/Pjya6Qg3vGB5uMUy9H/WNKNqoQbtW4FXAR6raXUP2xYlEJMuOKDluVmtPu8vNl61h8iqJ/mHRvPsWxq7/HKyAPz0HQKBgGseL4BbLGSnSJwPYHqeM6VARK9twPzg9vICWjCF3XHLo+SBsps0XIHUs6wjZ4KC/d3XCmPpWUUL7mE2IxCW7iNfUG3cYgS4RVVeCt0S1hQql2Dnawbi6Q2k2MENn4aA5lrYDMctypEdRo6akcQCpUSuwLJYYT0wRIl3TQX2Zhq2-----END RSA PRIVATE KEY-----";
             string pop = "-----BEGIN RSA PRIVATE KEY-----MIIEowIBAAKCAQEAj/ggukI20t7asxRrBoJmhIQVVQ31FXIS8y1xW+DXzKxEYgr52dlLzQ9DN1N53vdqGO3hL+CdezNLfk3N+jt+2XFmNlnWwIBW4BztIxwPE4bXhCMyTYg+14ZyK8BA3Jbm6XWMVbnmOwfAf1KVCLgUVcCoEfg9ncOIOpwR1ZdOv9V3pAGipoPvWB3KJKuOlnREotbJgug7YklX0LMnWIEN6VrEbXSWw6HFEROR+Kfazd+Bz3yaJBEQFxj6PHTh9LKEwTVobyac0B+QVa+kVuA8u5XgoKijIR0SuQmpdLI4+K8skxRPWedwWTj4iUfDg3uiPUcVaDn3nU96WGSFjonzOQIDAQABAoIBADoPMTecK1rX96+fjNfHr8tCLw4pfkyDQAQkr+IDJ1QJptw5G/CQUqLkRFGkDvJtqbJbAGTb+vZrxcauXuJKqwnK0xMZIONp/l8MG0/86VGRIAnQXeFpkBo/xHxDYIT1MDM3LfyGZ0QoCKfwKF0nS0AX3U+94i9k4uPr+7888UuoElxuA54HE6BZgJzFKpRP5jAymfPRtCDZgJtjc+XlfLeLGLG2QX3Hw9ItiXWzLo6rzFZqC0sj/LmLNHaps7UuuvzIG4p/Eb579SEEmua635KBdIuPrmsiMO+lmstIGgpWMY6lZ7TFKlQqrYtRqkYhgIOSBEIHV0DXk+4uuxLfp18CgYEAxUgJmH/c8JCgsP8I3U/J4t0COkwUx2tUOQXzGK1L+yXjLVNRREbYYCK0skh60HLASCILGrP7W2QxY8n0o1SpvzEloX8IljMPb62cqFKmRwOsYSX0l+eJJAAEMliicnro7k12Q0WRdiqOjNY0XxVX1+z6iNuVEFXhvYaKYlCDYScCgYEAutHxSbdGOC4Y/MiI0APmLybr4xZXjF5P8CFKX2i7fxzLaqxxXwfZJJiniHeMoqhRLnf1JSHRaP8Ytzs3NlvvuMHuCYFHFAdAEWuj2KxhTVIyltFjI/hPwYJmmThxaxQyrkFJvE15xX8B46/KRUvMvBHKB6U1D0L7/tBTMVC0BJ8CgYEArq/GB2oZCk8WawO5JraTDrYiVdquf5KTJlcVVeGFqSJ4Udc325xb1myE0mUJkvA5QOYcLQ334YoLjc/zNnkuQaTULHde9BjMb1gsooNkxvcCuZcxSRz1O5JkJOyFE5ewD+s5cAH29spiJWU7RIKSoRkvEuZUzP0vAXJTsRCX9PsCgYBi7t8KnKXxBmhxJXleP1Jc0g3FOoWubhuDHP4XvIzeac9HdH6tRqi1eqnt2PF/CgfDxf7qZRhStBTQo+k/Pjya6Qg3vGB5uMUy9H/WNKNqoQbtW4FXAR6raXUP2xYlEJMuOKDluVmtPu8vNl61h8iqJ/mHRvPsWxq7/HKyAPz0HQKBgGseL4BbLGSnSJwPYHqeM6VARK9twPzg9vICWjCF3XHLo+SBsps0XIHUs6wjZ4KC/d3XCmPpWUUL7mE2IxCW7iNfUG3cYgS4RVVeCt0S1hQql2Dnawbi6Q2k2MENn4aA5lrYDMctypEdRo6akcQCpUSuwLJYYT0wRIl3TQX2Zhq2-----END RSA PRIVATE KEY-----";
 
-            /*
-             
-             */
-            //string pub = GetPublicKeyFromPemFile(op).ToXmlString(false);
-            //string pri = GetPrivateKeyFromPemFile(pop).ToXmlString(false);
-            //richTextBox3.Text += pri;
-            //richTextBox3.Text += decript(encript("Hello", pub), pri, richTextBox2);
-            /*string eee = encript("Hello", op);
-            decript(eee, closekey, richTextBox2);*/
-            //richTextBox1.Text += Convert.ToBase64String(StringToBytes(eee));
-            //richTextBox1.Text += eee;
-
-            //richTextBox3.Text += GetMessage(textBox1.Text, textBox2.Text, openkey, richTextBox1);
-
-
-            string open = ImportPublicKey(op).ToXmlString(false);
-            //GetPrivateKeyFromPemFile(pop);
-            string close = ImportPrivateKey(pop).ToXmlString(true);
-
-            string _pass = encript("Heloo world", open);
-            richTextBox1.Text += _pass;
-            //richTextBox1.Text += decript(_pass, close, richTextBox4);
-
-            /*
-            RSACryptoServiceProvider RsaKey = new RSACryptoServiceProvider();
-            richTextBox1.Text += ExportPublicKey(RsaKey)+"\n";
-            richTextBox1.Text += ExportPrivateKey(RsaKey);*/
+            richTextBox3.Text += pri;
+            richTextBox3.Text += decript(encript("Hello", pub), pri, richTextBox2);
+            string eee = encript("Hello", op);
+            decript(eee, closekey, richTextBox2);
+            richTextBox1.Text += Convert.ToBase64String(StringToBytes(eee));
+            richTextBox1.Text += eee;*/
 
 
 
+
+                /*
+                string open = ImportPublicKey(op).ToXmlString(false);
+                string close = ImportPrivateKey(pop).ToXmlString(true);
+
+                string gk = "VWuqWHvpaMOQ6mPfLfRVlyQXSFbuowe+doVlTqXrdQlIphVkUnj7ZMVVRa1SgP6KLCL6EnQa5oFXxY6Nq7/DoI91jkBcyC7Qx+k94wT+klaBmruO0tFBEkN2VPTLbURtrZTU2Xx6xJ44rr/UNgpPUS8iICMuaREbl1av5snJj3iUsZuQIa20GbH28EUM4cb1Vy7ra6pQ5/pZL0dHOfBefoF1dt1/x9ODqnzlcrTWrEm5x1FQS99qMa9ja7FMCcIeLCRAgn7YUPCC/HhY3fuOXK9LV99H1D4FmEl/MT0S22W9ClLpvE0sZr5zsz1MWsO4zIixHR63I/J6aZSnlOs0lQ==";
+                richTextBox1.Text += BytesToString(Encoding.UTF8.GetBytes(gk));
+                string _pass = encript("Heloo world", open);
+                richTextBox1.Text += "";
+
+                richTextBox1.Text += Convert.ToBase64String(StringToBytes(encript("hello s", open)));
+
+                richTextBox1.Text += decript("86|87|117|113|87|72|118|112|97|77|79|81|54|109|80|102|76|102|82|86|108|121|81|88|83|70|98|117|111|119|101|43|100|111|86|108|84|113|88|114|100|81|108|73|112|104|86|107|85|110|106|55|90|77|86|86|82|97|49|83|103|80|54|75|76|67|76|54|69|110|81|97|53|111|70|88|120|89|54|78|113|55|47|68|111|73|57|49|106|107|66|99|121|67|55|81|120|43|107|57|52|119|84|43|107|108|97|66|109|114|117|79|48|116|70|66|69|107|78|50|86|80|84|76|98|85|82|116|114|90|84|85|50|88|120|54|120|74|52|52|114|114|47|85|78|103|112|80|85|83|56|105|73|67|77|117|97|82|69|98|108|49|97|118|53|115|110|74|106|51|105|85|115|90|117|81|73|97|50|48|71|98|72|50|56|69|85|77|52|99|98|49|86|121|55|114|97|54|112|81|53|47|112|90|76|48|100|72|79|102|66|101|102|111|70|49|100|116|49|47|120|57|79|68|113|110|122|108|99|114|84|87|114|69|109|53|120|49|70|81|83|57|57|113|77|97|57|106|97|55|70|77|67|99|73|101|76|67|82|65|103|110|55|89|85|80|67|67|47|72|104|89|51|102|117|79|88|75|57|76|86|57|57|72|49|68|52|70|109|69|108|47|77|84|48|83|50|50|87|57|67|108|76|112|118|69|48|115|90|114|53|122|115|122|49|77|87|115|79|52|122|73|105|120|72|82|54|51|73|47|74|54|97|90|83|110|108|79|115|48|108|81|61|61", close);
+
+
+                RSACryptoServiceProvider RsaKey = new RSACryptoServiceProvider();
+                richTextBox1.Text += ExportPublicKey(RsaKey)+"\n";
+                richTextBox1.Text += ExportPrivateKey(RsaKey);*/
+            }
+            richTextBox3.Text += GetMessage(textBox1.Text, textBox2.Text, openkey, richTextBox1);
         }
-
+        /*
         public static RSACryptoServiceProvider ImportPrivateKey(string pem)
         {
             PemReader pr = new PemReader(new StringReader(pem));
@@ -128,7 +126,6 @@ namespace MessageApp
             csp.ImportParameters(rsaParams);
             return csp;
         }
-
         public static RSACryptoServiceProvider ImportPublicKey(string pem)
         {
             PemReader pr = new PemReader(new StringReader(pem));
@@ -139,7 +136,6 @@ namespace MessageApp
             csp.ImportParameters(rsaParams);
             return csp;
         }
-
         public static string ExportPublicKey(RSACryptoServiceProvider csp)
         {
             StringWriter outputStream = new StringWriter();
@@ -292,8 +288,8 @@ namespace MessageApp
                     stream.Write(value[i]);
                 }
             }
-        }
-
+        }*/
+        
         private void button5_Click(object sender, EventArgs e)
         {
             RSAKeyGenerator(out openkey, out closekey);
@@ -317,7 +313,7 @@ namespace MessageApp
                 json = "{" + $"\"Name\":\"{_name}\", \"openkey\":\"{openkey}\", \"Password\":\"{_pass}\"" + "}";
                 string answer = GetResponseString(BaseUri, json);
                 string EnId = answer.Substring(9).TrimEnd('}').Trim('"');
-                return decript(EnId, closekey, richTextBox);
+                return decript(EnId, closekey);
                 //return answer;
             }
             catch (Exception)
@@ -339,7 +335,7 @@ namespace MessageApp
             string answer = GetResponseString(BaseUri, json);
             string EnId = answer.Substring(9).TrimEnd('}').Trim('"');
             //richTextBox.Text += answer + "\n";
-            return decript(EnId, closekey, richTextBox);
+            return decript(EnId, closekey);
         }
 
         public static string SendMessage(string uri, string myname, string Recipient, string messageText, string Token, RichTextBox richTextBox)
@@ -388,8 +384,9 @@ namespace MessageApp
         }
 
 
-        public static string decript(string ToDecrypt, string closekey, RichTextBox richTextBox)
+        public static string decript(string ToDecrypt, string closekey)
         {
+            return ToDecrypt;
             try
             {
                 RSACryptoServiceProvider RSA_ = new RSACryptoServiceProvider();
@@ -401,7 +398,7 @@ namespace MessageApp
                 byte[] Decrypted;
 
                 RSA_.FromXmlString(closekey);
-                Decrypted = RSADecrypt(Todecrypt, RSA_.ExportParameters(true), false);
+                Decrypted = RSADecrypt(Todecrypt, RSA_.ExportParameters(true), true);
                 byte[] _Decrypted = new byte[Decrypted.Length / 2];//херня почему-то после каждого байта вставляет ноль
                 for (int i = 0; i < Decrypted.Length; i += 2)
                 {
@@ -428,6 +425,7 @@ namespace MessageApp
 
         public static string encript(string ToEncrypt, string OpenKey)
         {
+            return ToEncrypt;
             string Eid;
             try
             {
