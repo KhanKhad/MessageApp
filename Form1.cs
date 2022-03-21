@@ -76,25 +76,29 @@ namespace MessageApp
 
         private void button4_Click(object sender, EventArgs e)
         {
-            { /*
-            string op = "D:\\download\\publicKey.pem";
-            string pop = "D:\\download\\privateKey.pem";
+            {
+                /*string op = "-----BEGIN RSA PUBLIC KEY-----MIIBCgKCAQEAj/ggukI20t7asxRrBoJmhIQVVQ31FXIS8y1xW+DXzKxEYgr52dlLzQ9DN1N53vdqGO3hL+CdezNLfk3N+jt+2XFmNlnWwIBW4BztIxwPE4bXhCMyTYg+14ZyK8BA3Jbm6XWMVbnmOwfAf1KVCLgUVcCoEfg9ncOIOpwR1ZdOv9V3pAGipoPvWB3KJKuOlnREotbJgug7YklX0LMnWIEN6VrEbXSWw6HFEROR+Kfazd+Bz3yaJBEQFxj6PHTh9LKEwTVobyac0B+QVa+kVuA8u5XgoKijIR0SuQmpdLI4+K8skxRPWedwWTj4iUfDg3uiPUcVaDn3nU96WGSFjonzOQIDAQAB-----END RSA PUBLIC KEY-----";
+                string pop = "-----BEGIN RSA PRIVATE KEY-----MIIEogIBAAKCAQEAsW3Va/RS78FUr3Ov9acUe1v8wQGJD+fJVySeM8ecefppYBpCIMxJxzecvQbBkjhYUgjisTU+srCszO2j8Bfp2m18yEET1LGKVmn/v5g0o/kpgOx4Q3u6S2TEwOUcjbAEMWOGtDXhnLHDkjU7R9EahEEhdoFNW3FJ99sV3EpgvDkYA8Mf9O8h9DPgtquWEb0yrQwyF2jgFT26S4GrPA8u5jh41EyhVnZLTT3Yvpu6a0VivsQPYMebs+hnAuJz4RSvwO0l5sEzG9U2FURazJX2v2Dzv9dbFr6GX+QRF3ZpO0434CHBYamZokaA4tlmrumgvuSrWMy+lmkYi5HGY6anhwIDAQABAoIBAAooZ5eOnVDsmJSS4vgFYL7PPWEvXVFzy6sZhZUhUGwLUg0Wc8K871xgarDHuj1MzIGl0JSkn7pLMxloYYJVXCYNLp+oWiJLJ8hauTGW3SymDyI6Z4g1hSzb0AfbFg9mjFbng8a9bvUxmCi+s24hIot/zxKhxHP/wGRYPqAmAfPEmJkJ2c9effMCk8L4odseqw8DOaG8pDkXzMACmTSj23RXGkAIF6Q5owIBOJOhAaOhNk6mtjsFkCPjPdLuD2fypZyS3lfp5JIIRU2fssSGPSUUm0Zk9PcH03zDQ1IiBksrDU0yomQVhoHVhaxIa8HEC8ybD7K+ZBK/RvObnxd8k0ECgYEA2/uE9MaV5VzrxM9wgHmCS/J/9N3Rbk5xJz4M+URtC/epztGup6dKdWlfkHDl2gZ3lrrPjPGfwW7JMUG50oatp8a9A0gVTToyXdn6ogcArG2KlzPEqPaW9V2iQ+h9Dbot5U9JhH7725YYkyAGxELbIi+LppZnA+QiM3FyARG8U2sCgYEAznqz4FFDCkVekoSt7X3+b+Sx27n7eQbvHBJpsgTvGABlRrncOUDS6mI3FB4dOiQzMQFt5jR94URYaBjGOCQ5WNCr16ZMEdOo5O37o73faTTJyGtOgl2CASOjgGW9SSMmS3PrXtCr7ZRdc16Ek4j/7DrR5uNHPiqt8XWmaNxPH1UCgYBvgAMaFnXvtbODJCm/1NboK9gTg0MeCABuhZMJ3VbwU+3r+HfwXmjtLiXUDoVShyiia7m7lNUGtGKh5tCLFtx6R8+SFD1H0ZGp5EyXR7ldrIAst36crbBCWd1fUj3gcVfF/PQkhkCeQmveVsNXQxPTNgowu9cnL8DuFjhUtmqgVQKBgG1MvtNLsPVK61kcKwXA4GNS6GOr+9aBOSnfBVxbCEXoT7Q0xsL38a5o90cK+eXBK+gRHZ/ywX/xserI0oT9h+3f6FdrjHETXiBxafevlwgWDYquYwzXeu4nc3GQabbBiJAAeOPkCl7lXuKncf63UuI18M8MGLZr2VAsOz7fAHNRAoGAM8PqKkI6ZHV9MUAtzvg/gFJaNI9QUXBUlE5r/JuVLThipo/2uzsYShDKjY8ad31NW6mDAuXFzP/XsQmvBbN8Nn3l35uc+9MfaAc1wriDav+upafIwa6fwjapPQ2PN0sM64bO/shovwebJ9USBdYrRZjf0Q3PzU+p1HQc+Nbz55I=-----END RSA PRIVATE KEY-----";
 
-            string op = "-----BEGIN RSA PUBLIC KEY-----MIIBCgKCAQEAj/ggukI20t7asxRrBoJmhIQVVQ31FXIS8y1xW+DXzKxEYgr52dlLzQ9DN1N53vdqGO3hL+CdezNLfk3N+jt+2XFmNlnWwIBW4BztIxwPE4bXhCMyTYg+14ZyK8BA3Jbm6XWMVbnmOwfAf1KVCLgUVcCoEfg9ncOIOpwR1ZdOv9V3pAGipoPvWB3KJKuOlnREotbJgug7YklX0LMnWIEN6VrEbXSWw6HFEROR+Kfazd+Bz3yaJBEQFxj6PHTh9LKEwTVobyac0B+QVa+kVuA8u5XgoKijIR0SuQmpdLI4+K8skxRPWedwWTj4iUfDg3uiPUcVaDn3nU96WGSFjonzOQIDAQAB-----END RSA PUBLIC KEY-----";
-            string op = "-----BEGIN PUBLIC KEY-----MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCj5NuNZtPWRrfOp8lW01Ptd9TYliqVcbzdqrmROu6m+jfmUrByGP6owSbdND1bg4D9UOYmwQ+gdOKsAZNaN6hndzVQnoT8V5aOS/hW126gF3CPPmCMgRqSn6+wQ2VlnyTXvNbq981fsZ5eEE6J5VlbjTOLON6ZrCJO0kRIaO4IyQIDAQAB-----END PUBLIC KEY-----";
-            string pop = "-----BEGIN RSA PRIVATE KEY-----MIIEowIBAAKCAQEAj/ggukI20t7asxRrBoJmhIQVVQ31FXIS8y1xW+DXzKxEYgr52dlLzQ9DN1N53vdqGO3hL+CdezNLfk3N+jt+2XFmNlnWwIBW4BztIxwPE4bXhCMyTYg+14ZyK8BA3Jbm6XWMVbnmOwfAf1KVCLgUVcCoEfg9ncOIOpwR1ZdOv9V3pAGipoPvWB3KJKuOlnREotbJgug7YklX0LMnWIEN6VrEbXSWw6HFEROR+Kfazd+Bz3yaJBEQFxj6PHTh9LKEwTVobyac0B+QVa+kVuA8u5XgoKijIR0SuQmpdLI4+K8skxRPWedwWTj4iUfDg3uiPUcVaDn3nU96WGSFjonzOQIDAQABAoIBADoPMTecK1rX96+fjNfHr8tCLw4pfkyDQAQkr+IDJ1QJptw5G/CQUqLkRFGkDvJtqbJbAGTb+vZrxcauXuJKqwnK0xMZIONp/l8MG0/86VGRIAnQXeFpkBo/xHxDYIT1MDM3LfyGZ0QoCKfwKF0nS0AX3U+94i9k4uPr+7888UuoElxuA54HE6BZgJzFKpRP5jAymfPRtCDZgJtjc+XlfLeLGLG2QX3Hw9ItiXWzLo6rzFZqC0sj/LmLNHaps7UuuvzIG4p/Eb579SEEmua635KBdIuPrmsiMO+lmstIGgpWMY6lZ7TFKlQqrYtRqkYhgIOSBEIHV0DXk+4uuxLfp18CgYEAxUgJmH/c8JCgsP8I3U/J4t0COkwUx2tUOQXzGK1L+yXjLVNRREbYYCK0skh60HLASCILGrP7W2QxY8n0o1SpvzEloX8IljMPb62cqFKmRwOsYSX0l+eJJAAEMliicnro7k12Q0WRdiqOjNY0XxVX1+z6iNuVEFXhvYaKYlCDYScCgYEAutHxSbdGOC4Y/MiI0APmLybr4xZXjF5P8CFKX2i7fxzLaqxxXwfZJJiniHeMoqhRLnf1JSHRaP8Ytzs3NlvvuMHuCYFHFAdAEWuj2KxhTVIyltFjI/hPwYJmmThxaxQyrkFJvE15xX8B46/KRUvMvBHKB6U1D0L7/tBTMVC0BJ8CgYEArq/GB2oZCk8WawO5JraTDrYiVdquf5KTJlcVVeGFqSJ4Udc325xb1myE0mUJkvA5QOYcLQ334YoLjc/zNnkuQaTULHde9BjMb1gsooNkxvcCuZcxSRz1O5JkJOyFE5ewD+s5cAH29spiJWU7RIKSoRkvEuZUzP0vAXJTsRCX9PsCgYBi7t8KnKXxBmhxJXleP1Jc0g3FOoWubhuDHP4XvIzeac9HdH6tRqi1eqnt2PF/CgfDxf7qZRhStBTQo+k/Pjya6Qg3vGB5uMUy9H/WNKNqoQbtW4FXAR6raXUP2xYlEJMuOKDluVmtPu8vNl61h8iqJ/mHRvPsWxq7/HKyAPz0HQKBgGseL4BbLGSnSJwPYHqeM6VARK9twPzg9vICWjCF3XHLo+SBsps0XIHUs6wjZ4KC/d3XCmPpWUUL7mE2IxCW7iNfUG3cYgS4RVVeCt0S1hQql2Dnawbi6Q2k2MENn4aA5lrYDMctypEdRo6akcQCpUSuwLJYYT0wRIl3TQX2Zhq2-----END RSA PRIVATE KEY-----";
-            string pop = "-----BEGIN RSA PRIVATE KEY-----MIIEowIBAAKCAQEAj/ggukI20t7asxRrBoJmhIQVVQ31FXIS8y1xW+DXzKxEYgr52dlLzQ9DN1N53vdqGO3hL+CdezNLfk3N+jt+2XFmNlnWwIBW4BztIxwPE4bXhCMyTYg+14ZyK8BA3Jbm6XWMVbnmOwfAf1KVCLgUVcCoEfg9ncOIOpwR1ZdOv9V3pAGipoPvWB3KJKuOlnREotbJgug7YklX0LMnWIEN6VrEbXSWw6HFEROR+Kfazd+Bz3yaJBEQFxj6PHTh9LKEwTVobyac0B+QVa+kVuA8u5XgoKijIR0SuQmpdLI4+K8skxRPWedwWTj4iUfDg3uiPUcVaDn3nU96WGSFjonzOQIDAQABAoIBADoPMTecK1rX96+fjNfHr8tCLw4pfkyDQAQkr+IDJ1QJptw5G/CQUqLkRFGkDvJtqbJbAGTb+vZrxcauXuJKqwnK0xMZIONp/l8MG0/86VGRIAnQXeFpkBo/xHxDYIT1MDM3LfyGZ0QoCKfwKF0nS0AX3U+94i9k4uPr+7888UuoElxuA54HE6BZgJzFKpRP5jAymfPRtCDZgJtjc+XlfLeLGLG2QX3Hw9ItiXWzLo6rzFZqC0sj/LmLNHaps7UuuvzIG4p/Eb579SEEmua635KBdIuPrmsiMO+lmstIGgpWMY6lZ7TFKlQqrYtRqkYhgIOSBEIHV0DXk+4uuxLfp18CgYEAxUgJmH/c8JCgsP8I3U/J4t0COkwUx2tUOQXzGK1L+yXjLVNRREbYYCK0skh60HLASCILGrP7W2QxY8n0o1SpvzEloX8IljMPb62cqFKmRwOsYSX0l+eJJAAEMliicnro7k12Q0WRdiqOjNY0XxVX1+z6iNuVEFXhvYaKYlCDYScCgYEAutHxSbdGOC4Y/MiI0APmLybr4xZXjF5P8CFKX2i7fxzLaqxxXwfZJJiniHeMoqhRLnf1JSHRaP8Ytzs3NlvvuMHuCYFHFAdAEWuj2KxhTVIyltFjI/hPwYJmmThxaxQyrkFJvE15xX8B46/KRUvMvBHKB6U1D0L7/tBTMVC0BJ8CgYEArq/GB2oZCk8WawO5JraTDrYiVdquf5KTJlcVVeGFqSJ4Udc325xb1myE0mUJkvA5QOYcLQ334YoLjc/zNnkuQaTULHde9BjMb1gsooNkxvcCuZcxSRz1O5JkJOyFE5ewD+s5cAH29spiJWU7RIKSoRkvEuZUzP0vAXJTsRCX9PsCgYBi7t8KnKXxBmhxJXleP1Jc0g3FOoWubhuDHP4XvIzeac9HdH6tRqi1eqnt2PF/CgfDxf7qZRhStBTQo+k/Pjya6Qg3vGB5uMUy9H/WNKNqoQbtW4FXAR6raXUP2xYlEJMuOKDluVmtPu8vNl61h8iqJ/mHRvPsWxq7/HKyAPz0HQKBgGseL4BbLGSnSJwPYHqeM6VARK9twPzg9vICWjCF3XHLo+SBsps0XIHUs6wjZ4KC/d3XCmPpWUUL7mE2IxCW7iNfUG3cYgS4RVVeCt0S1hQql2Dnawbi6Q2k2MENn4aA5lrYDMctypEdRo6akcQCpUSuwLJYYT0wRIl3TQX2Zhq2-----END RSA PRIVATE KEY-----";
+                
+                 
 
-            richTextBox3.Text += pri;
-            richTextBox3.Text += decript(encript("Hello", pub), pri, richTextBox2);
-            string eee = encript("Hello", op);
-            decript(eee, closekey, richTextBox2);
-            richTextBox1.Text += Convert.ToBase64String(StringToBytes(eee));
-            richTextBox1.Text += eee;*/
+                 
+                string open = ImportPublicKey(op).ToXmlString(false);
+                string close = ImportPrivateKey(pop).ToXmlString(true);
+                close = "<RSAKeyValue><Modulus>pajps6oKJS3uFbto/B3OXQtNzf8SnVK60AcYq5oUAwKU+lf06xg3EtZIl2crZRiG6goR5XWHIwFFGjF0iWTyLm/KxEwdlK1xlfA7O2GEnA8FqCkql91g5XPaUE7aLirKPr+1Dq/pjoU24csb4793PxLVz04UQJ/C9ydZYXiBLrzTL+TQ2S+Cr2a9kklBBL2FB2ortz0aX3xxojZLLzO8odZhPdxqN13pXNx3+h6Z/WBMnDQ3GdQ6BaX16W9R/PoUNRWiMZY9Mq/RZlzh2jPTMqIyduguM2IowMQ2Jxs5gRxzuTtv1zHjp+rdAoQ2F7lovkvcAEgbAFKn5kBltp+9cQ==</Modulus><Exponent>AQAB</Exponent><P>w7bggL3v0ha4e+GYSyniinVEUZsFekoF/P28st+A3l6ZEvJcXfKPJLZbVuq15BN9wKfDRrGe5CK36bqpgHjruX7dssDAdDILFs+DMm0q7A4ueI7QOv338F5jABP1Pq56lOjXEEQoCQNEKLrCxyuRqJemDCRAZqvPRojQLBXdZUs=</P><Q>2LATCAErEr0IkjKWquagGCepDMfTOw9mEvxpKXTOUIcGMb4xyVXzMU66EXcqVh+OVmrQQklQKMXhw9c9wHvDBJglLU4QaowzLq6I4Uz2U3I2s+lm2cDorx+QJwT1hwK3pzJ935RBspzgyWinZAGGD3e1o1GWN8vGyst1uV+FfrM=</Q><DP>G7sf2F4RSw1ZGoR+lbfbl47CHWX/wrIWYyB4ykeM9PUmb17T46Po0GTeUFR1bVmtqcybiLrGLsEUmhOOzNtVWzU0qI1TN6OXmqXQiyaYvFXOE9r4ekNeDDrzgCFT0IvcZpkPUAi4O36w+6xqyNnNi7vhFTtVvLZ/ahkclgKLGj0=</DP><DQ>j40uPnpPp81V1UzwZe39l6MGqnHjbVgJPoC7xnwchlq9bszavNBVGZBXUmTIxl+Hc5a1u4RIN4rIw25f+ZnEG9ITpwz1cTDKY527Ds9mzOd4d/4jZhUX0ZSucjsl0biqJHkdzLWyRHsLrELJykX8I1kiGz1csEAuxYC+z/0JOmM=</DQ><InverseQ>jMsB9vvu592Uy3QykYq9gmjdJGD7HBWug71ARz/Z7TYYgsWS7h7v4vo1FYULqAyxfh7MZNYouy3byEdWzXYrZUOasiVDcw54V34Yqwib7kgdqClM/vk+RcH5gMARVoH/XTfEEeKLtANY8VVkC+EelcZ6qqbdLuNVAenBhD7/aVQ=</InverseQ><D>BiphvFPv+bnvul5VxiBj3axTMn9eVX2j7KR++Lq3fknaept1xvQz7zRg0kW+5I3Y+PKeqjrJaKDzo0nDlm4r4f+Q0o/Uqq5ujk/jxyOA2IAUoVFwP45ikgJRq0XWsqYuuHl7xyFT9ip4xEbsxvlez6RR/IZhlEAon6NBcofAzcOeV988ZEAahKIc2dAntFb8C048JCUdFMXc+fDWog3578819apmglZTcbkRGFpQnWAB+BkuByysv6qFMhYjMCWsUwU2tYLsBOB0U8ACKUkXtygJ8OntfRu/HJNZq0OxY8PKBctI6JYm1eyPVSC2gaIP8zWG1YZAxiQNZJR9W9rkaw==</D></RSAKeyValue>";
+                string todecrypt = "LLzLbcv6CYUu/cOoXR3zFXKcH0CBcqt9EnsJSpXQYEFZzLrzaFmZ4/kgBkaiXmTi9YC0jJRwjhbCHU8lpEW0ckdWaoC9LARNgEmORYvAlVeNrV+7/0Ok9WqGJexgHeICIzMs8oAS9PCvG0Id7VFTcd08LoqlDFxY0dTRqEzWy7N0cbDuKKEgSafTPN37uuYOyw+Zi8kEt1KEfh6M3wYwDXU/aOwcWPkt8CEW2Dpruz56cmO96BvLSf/wjxoCfkyqPMW2TyvJrXO1qyH94WS+R3sHw+fmC8iYuC1gNpTnvA1rdhLBWdp1FmIoM449GSGcXInv7q/LcndtE9nZym/0Fw==";
+                richTextBox3.Text += decrypt11(todecrypt, close);
+                */
 
+                //richTextBox3.Text += decript(BytesToString(Encoding.UTF8.GetBytes(todecrypt)), close);
 
+                RSACryptoServiceProvider RsaKey = new RSACryptoServiceProvider();
+                richTextBox1.Text += ExportPublicKey(RsaKey) + "\n";
+                richTextBox1.Text += ExportPrivateKey(RsaKey);
 
-
+                string _pass = encript("Heloo world", RsaKey.ToXmlString(false));
+                richTextBox1.Text += "\n"+Convert.ToBase64String(StringToBytes(_pass)) + "\n";
                 /*
                 string open = ImportPublicKey(op).ToXmlString(false);
                 string close = ImportPrivateKey(pop).ToXmlString(true);
@@ -113,9 +117,24 @@ namespace MessageApp
                 richTextBox1.Text += ExportPublicKey(RsaKey)+"\n";
                 richTextBox1.Text += ExportPrivateKey(RsaKey);*/
             }
-            richTextBox3.Text += GetMessage(textBox1.Text, textBox2.Text, openkey, richTextBox1);
+
+
+
+
+            //richTextBox3.Text += GetMessage(textBox1.Text, textBox2.Text, openkey, richTextBox1);
         }
-        /*
+
+        public static string decrypt11(string text, string privateKey)
+        {
+            byte[] cypherText = Convert.FromBase64String(text);
+            using (var rsa = new RSACryptoServiceProvider())
+            {
+                rsa.FromXmlString(privateKey);
+                var bytesText = rsa.Decrypt(cypherText, false);
+                return System.Text.Encoding.UTF8.GetString(bytesText);
+            }
+        }
+
         public static RSACryptoServiceProvider ImportPrivateKey(string pem)
         {
             PemReader pr = new PemReader(new StringReader(pem));
@@ -288,7 +307,7 @@ namespace MessageApp
                     stream.Write(value[i]);
                 }
             }
-        }*/
+        }
         
         private void button5_Click(object sender, EventArgs e)
         {
@@ -386,7 +405,7 @@ namespace MessageApp
 
         public static string decript(string ToDecrypt, string closekey)
         {
-            return ToDecrypt;
+            //return ToDecrypt;
             try
             {
                 RSACryptoServiceProvider RSA_ = new RSACryptoServiceProvider();
@@ -425,7 +444,7 @@ namespace MessageApp
 
         public static string encript(string ToEncrypt, string OpenKey)
         {
-            return ToEncrypt;
+            //return ToEncrypt;
             string Eid;
             try
             {
