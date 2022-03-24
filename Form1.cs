@@ -15,8 +15,6 @@ using Org.BouncyCastle.Security;
 using System.IO;
 using Org.BouncyCastle.OpenSsl;
 using Org.BouncyCastle.Crypto.Parameters;
-using Org.BouncyCastle.Crypto.Encodings;
-using Org.BouncyCastle.Crypto.Engines;
 
 namespace MessageApp
 {
@@ -46,7 +44,7 @@ namespace MessageApp
             {
                 string _myToken = Registration(textBox1.Text, textBox2.Text, textBox3.Text, openkey, closekey, richTextBox1);
                 myToken = _myToken;
-                richTextBox1.Text += _myToken + "\n";
+                //richTextBox1.Text += _myToken + "\n";
             }
             else
             {
@@ -132,18 +130,16 @@ namespace MessageApp
 
             //richTextBox3.Text += GetMessage(textBox1.Text, textBox2.Text, openkey, richTextBox1);
         }
-
-        public static string decrypt11(string text, string privateKey)
+        public static string decrypt(string text, string privateKey)
         {
             byte[] cypherText = Convert.FromBase64String(text);
             using (var rsa = new RSACryptoServiceProvider())
             {
                 rsa.FromXmlString(privateKey);
                 var bytesText = rsa.Decrypt(cypherText, false);
-                return System.Text.Encoding.UTF8.GetString(bytesText);
+                return Encoding.UTF8.GetString(bytesText);
             }
         }
-
         public static RSACryptoServiceProvider ImportPrivateKey(string pem)
         {
             PemReader pr = new PemReader(new StringReader(pem));
@@ -329,25 +325,35 @@ namespace MessageApp
             richTextBox4.Text += GetInformAboutSendedMessages(textBox1.Text, textBox2.Text, openkey, richTextBox1);
         }
 
+        public static string GetConfurm(string uri, string name, string myToken, int opId, string openkey, string privateKey)
+        {
+            string json = "{" + $"\"operationId\":{opId}, \"hashName\":\"{CreateMD5(name)}\", \"confurmStringClient\":\"{myToken}\", \"openkey\":\"{openkey}\"" + "}";
+            string answer = GetResponseString(uri + "getconfurm", json);
+            string serverTokenEncrypted = answer.Split(':')[1].Trim('}').Trim('"');
+            string serverToken = decript(serverTokenEncrypted, privateKey);
+            return serverToken.Split('|')[1];
+        }
+
         public static string Registration(string uri, string name, string pass, string openkey, string closekey, RichTextBox richTextBox)
         {
+            string _myToken = Guid.NewGuid().ToString();
+            string json = "";
+            string _openkey = GetResponseString(uri + "getkeyxml", json).Split(':')[1].Trim('}').Trim('"');
+            string _serverToken = GetConfurm(uri, name, _myToken, 0, openkey, closekey);
+            string BaseUri = uri + "registration";
+            string _name = encript(_serverToken + "|" + name + "|" + _myToken, _openkey);
+            string _pass = encript(_serverToken + "|" + pass + "|" + _myToken, _openkey);
+            json = "{" + $"\"Name\":\"{_name}\", \"openkey\":\"{openkey}\", \"Password\":\"{_pass}\"" + "}";
+            string answer = GetResponseString(BaseUri, json);
+            string EnId = answer.Substring(9).TrimEnd('}').Trim('"');
+            return decript(EnId, closekey).Split('|')[1];
             try
             {
-                string BaseUri = uri + "registration";
-                string json = "";
-                string _openkey = GetResponseString(uri + "getkey", json).Split(':')[1].Trim('}').Trim('"');
-                string _name = encript(name, _openkey);
-                string _pass = encript(pass, _openkey);
-                json = "{" + $"\"Name\":\"{_name}\", \"openkey\":\"{openkey}\", \"Password\":\"{_pass}\"" + "}";
-                string answer = GetResponseString(BaseUri, json);
-                string EnId = answer.Substring(9).TrimEnd('}').Trim('"');
-                return decript(EnId, closekey);
-                //return answer;
+                
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                string _openkey = GetResponseString(uri + "getkey", "").Split(':')[1].Trim('}').Trim('"');
-                richTextBox.Text += _openkey + "\n";
+                richTextBox.Text += e.Message + "\n";
                 return null;
             }
         }
@@ -406,7 +412,7 @@ namespace MessageApp
 
         public static void RSAKeyGenerator(out string publickey, out string privatekey)
         {
-            RSACryptoServiceProvider RsaKey = new RSACryptoServiceProvider(2048);
+            RSACryptoServiceProvider RsaKey = new RSACryptoServiceProvider();
             publickey = RsaKey.ToXmlString(false); //получим открытый ключ
             privatekey = RsaKey.ToXmlString(true); //получим закрытый ключ
         }
@@ -422,11 +428,11 @@ namespace MessageApp
                 UnicodeEncoding ByteConverter = new UnicodeEncoding();
 
                 //Create byte arrays to hold original, encrypted, and decrypted data.
-                byte[] Todecrypt = StringToBytes(ToDecrypt);
+                byte[] Todecrypt = Convert.FromBase64String(ToDecrypt);//StringToBytes(ToDecrypt);//wrong operation token2
                 byte[] Decrypted;
 
                 RSA_.FromXmlString(closekey);
-                Decrypted = RSADecrypt(Todecrypt, RSA_.ExportParameters(true), true);
+                Decrypted = RSADecrypt(Todecrypt, RSA_.ExportParameters(true), false);
                 byte[] _Decrypted = new byte[Decrypted.Length / 2];//херня почему-то после каждого байта вставляет ноль
                 for (int i = 0; i < Decrypted.Length; i += 2)
                 {
@@ -463,12 +469,12 @@ namespace MessageApp
 
                 UnicodeEncoding ByteConverter = new UnicodeEncoding();
 
-                byte[] IdToEncode = ByteConverter.GetBytes(ToEncrypt);
+                byte[] IdToEncode = Encoding.UTF8.GetBytes(ToEncrypt);
                 byte[] EncodedId;
 
                 EncodedId = RSAEncrypt(IdToEncode, RSA_.ExportParameters(false), false);
 
-                Eid = BytesToString(EncodedId);
+                Eid = Convert.ToBase64String(EncodedId);
 
             }
             catch (ArgumentNullException)
@@ -553,7 +559,7 @@ namespace MessageApp
         {
             using (MD5 md5 = MD5.Create())
             {
-                byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(input);
+                byte[] inputBytes = Encoding.ASCII.GetBytes(input);
                 byte[] hashBytes = md5.ComputeHash(inputBytes);
 
                 // Convert the byte array to hexadecimal string
@@ -565,7 +571,5 @@ namespace MessageApp
                 return sb.ToString();
             }
         }
-
-        
     }
 }
