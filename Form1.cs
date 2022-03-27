@@ -44,7 +44,7 @@ namespace MessageApp
             {
                 string _myToken = Registration(textBox1.Text, textBox2.Text, textBox3.Text, openkey, closekey, richTextBox1);
                 myToken = _myToken;
-                //richTextBox1.Text += _myToken + "\n";
+                richTextBox1.Text += _myToken + "\n";
             }
             else
             {
@@ -330,7 +330,7 @@ namespace MessageApp
             string json = "{" + $"\"operationId\":{opId}, \"hashName\":\"{CreateMD5(name)}\", \"confurmStringClient\":\"{myToken}\", \"openkey\":\"{openkey}\"" + "}";
             string answer = GetResponseString(uri + "getconfurm", json);
             string serverTokenEncrypted = answer.Split(':')[1].Trim('}').Trim('"');
-            string serverToken = decript(serverTokenEncrypted, privateKey);
+            string serverToken = decrypt(serverTokenEncrypted, privateKey);
             return serverToken.Split('|')[1];
         }
 
@@ -344,9 +344,14 @@ namespace MessageApp
             string _name = encript(_serverToken + "|" + name + "|" + _myToken, _openkey);
             string _pass = encript(_serverToken + "|" + pass + "|" + _myToken, _openkey);
             json = "{" + $"\"Name\":\"{_name}\", \"openkey\":\"{openkey}\", \"Password\":\"{_pass}\"" + "}";
+
+
+            //richTextBox.Text = _serverToken;
+
             string answer = GetResponseString(BaseUri, json);
             string EnId = answer.Substring(9).TrimEnd('}').Trim('"');
-            return decript(EnId, closekey).Split('|')[1];
+            return decrypt(EnId, closekey).Split('|')[1];
+
             try
             {
                 
@@ -369,7 +374,7 @@ namespace MessageApp
             string answer = GetResponseString(BaseUri, json);
             string EnId = answer.Substring(9).TrimEnd('}').Trim('"');
             //richTextBox.Text += answer + "\n";
-            return decript(EnId, closekey);
+            return decrypt(EnId, closekey);
         }
 
         public static string SendMessage(string uri, string myname, string Recipient, string messageText, string Token, RichTextBox richTextBox)
@@ -418,7 +423,7 @@ namespace MessageApp
         }
 
 
-        public static string decript(string ToDecrypt, string closekey)
+       /* public static string decript(string ToDecrypt, string closekey)
         {
             //return ToDecrypt;
             try
@@ -445,7 +450,7 @@ namespace MessageApp
                 Console.WriteLine("Decryption failed.");
                 return null;
             }
-        }
+        }*/
 
         private static string BytesToString(byte[] decrypted)
         {
