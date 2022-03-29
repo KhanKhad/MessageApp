@@ -69,19 +69,19 @@ namespace MessageApp
 
         private void button3_Click(object sender, EventArgs e)
         {
-            SendMessage(textBox1.Text, textBox2.Text, textBox4.Text, richTextBox2.Text, myToken, richTextBox1);
+            SendMessage(textBox1.Text, textBox2.Text, textBox4.Text, richTextBox2.Text, myToken,openkey, closekey, richTextBox1);
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            {
+            /*{
                 string op = "-----BEGIN RSA PUBLIC KEY-----MIIBCgKCAQEAj/ggukI20t7asxRrBoJmhIQVVQ31FXIS8y1xW+DXzKxEYgr52dlLzQ9DN1N53vdqGO3hL+CdezNLfk3N+jt+2XFmNlnWwIBW4BztIxwPE4bXhCMyTYg+14ZyK8BA3Jbm6XWMVbnmOwfAf1KVCLgUVcCoEfg9ncOIOpwR1ZdOv9V3pAGipoPvWB3KJKuOlnREotbJgug7YklX0LMnWIEN6VrEbXSWw6HFEROR+Kfazd+Bz3yaJBEQFxj6PHTh9LKEwTVobyac0B+QVa+kVuA8u5XgoKijIR0SuQmpdLI4+K8skxRPWedwWTj4iUfDg3uiPUcVaDn3nU96WGSFjonzOQIDAQAB-----END RSA PUBLIC KEY-----";
                 string pop = "-----BEGIN RSA PRIVATE KEY-----MIIEogIBAAKCAQEA08kDVqVGCWZdvapAxX6tKrgOXqq9WAxrYRX/4WSLuhrOlHf3KtzfrccGjgjYRwb9FnPLMd3TkDWUR62u9HEcK93cRpQHklSOxuQxXc+8EjP7JNb9oRYZGnNBIAKztEO11Eo6q/TJNalca+aPTXWY+DxZ+O6xn9t9sVPD4zzcpFkHkDDd2on7ub9EPwAwl4rfy2n4/foPuEbxQehGFCpb3eb8pLOxQUi1OKyFmrtQ4MFIYg0Xussx3PON38R7bWv+4oZgy0mz8a/UyPOAb2zxn7M8NMjfbVtCK9XWqHWj80KGU8La94OHYMTV5QYAxQsBrrc3lnUHWELZSCwnj3Bs3QIDAQABAoH/HZgE08VEhCMD9ln2+OfGSuBtUCpF1rZxM4iN/s4CW1CSMEQ2IruL+msPc8mCzGoKrccMHcjV6kU1UEMvDITwR+shXLtp9logU5NJr8aRpCgTtdf33twUvTS62VWHUp2X7dgUcgorWXcuIYitfaVxI216Dc7v1KDizJM5Y3vjh58FJwzbZXMjRURTRmk3z+LRXwdz9Nh08rBDHtOr9fhuFlyiYKVqNVa5faGFv/1sWtdhxY3exkbUf99z8VH+EPc3W1iG73uBSpUtNGKODMakOxN5faKNH4sl+MXVUjfpSn1+LUij9owXl1pnspIs/AQk/KqA9lBd+kuKyVTiE4uPAoGBAPQYFFroalVEwaYtKv4Zz5gT+Y2OB5ZjJ5bmmpVQnwZevA/b+EOZHoeJsDN87HGAhtRTNCcnyyHVNx7VxTPegnAmDFrOcjiYpTA5Jat3swtHD9rhoD/5I8eHg0B282MTHplWQ7S1YuD+C4IJ1GmER9vz8EAey4NLurbJHMLPPXcTAoGBAN4dgPTadZtya4dTJpGBN0KffLzcu8vOY8kFHbwKvY778L00q//GjYucLVgsW3UkbxTqjCHxQf9qeMojXcBmjRs6kZ/JYNpS4jYvZ3Yf+Jx1VSSrLYbWGY+tBO/zVabyvGe6dbjSgyRBnGdV/22LgX4vSNJxfDjFwotOMfYpdFpPAoGBAJ0apndAYbgR8eWH6sTzTebe7F7MjFuh5Ag+0j3KTyAldztp4+d2NO0dlLf+7pu7Eoy0JLwS464Z8kk5Y5yX2TJfetIzT9bXgHKCRZmQCD/48954G9ExBHNW6AZkyQ/6bVZZ7Gfx2vte539B3mIvjqSl4/sRFwGhi0I8PPOxuSjbAoGBAJJxL1nAQvQXL1AMgYxDfnSdhHdcrTCFRgL+LYmSJ0KDV0jX1mMPvLkEYl0U+cO1HsvSjEvArfvBbhwPzzsQIg6GwgZwlju7k8uX24XlNFurfFRty9lvhXDV6UBu1dT5i0B0jjMqEC6yV3VGHN9TsC/K6x9clUM1F7wS9RvQXxc/AoGAH6FIsmLNDJkwOntyy/XayRbyDAf6oktVvjRlRoUDhwaKzgCqeZ601gJT6naO8Jovh30wLbSHrflhM2oy8Wyi0dknGnPHm0QifmI+JSYMBVwS267j8OcDROWJ04zHbv20jgi5y8myV7jzbnU01MUyhoOiX1f3gU7OzkKKqcG4IPU=-----END RSA PRIVATE KEY-----";
-                /*
-                 MIIEogIBAAKCAQEA08kDVqVGCWZdvapAxX6tKrgOXqq9WAxrYRX/4WSLuhrOlHf3KtzfrccGjgjYRwb9FnPLMd3TkDWUR62u9HEcK93cRpQHklSOxuQxXc+8EjP7JNb9oRYZGnNBIAKztEO11Eo6q/TJNalca+aPTXWY+DxZ+O6xn9t9sVPD4zzcpFkHkDDd2on7ub9EPwAwl4rfy2n4/foPuEbxQehGFCpb3eb8pLOxQUi1OKyFmrtQ4MFIYg0Xussx3PON38R7bWv+4oZgy0mz8a/UyPOAb2zxn7M8NMjfbVtCK9XWqHWj80KGU8La94OHYMTV5QYAxQsBrrc3lnUHWELZSCwnj3Bs3QIDAQABAoH/HZgE08VEhCMD9ln2+OfGSuBtUCpF1rZxM4iN/s4CW1CSMEQ2IruL+msPc8mCzGoKrccMHcjV6kU1UEMvDITwR+shXLtp9logU5NJr8aRpCgTtdf33twUvTS62VWHUp2X7dgUcgorWXcuIYitfaVxI216Dc7v1KDizJM5Y3vjh58FJwzbZXMjRURTRmk3z+LRXwdz9Nh08rBDHtOr9fhuFlyiYKVqNVa5faGFv/1sWtdhxY3exkbUf99z8VH+EPc3W1iG73uBSpUtNGKODMakOxN5faKNH4sl+MXVUjfpSn1+LUij9owXl1pnspIs/AQk/KqA9lBd+kuKyVTiE4uPAoGBAPQYFFroalVEwaYtKv4Zz5gT+Y2OB5ZjJ5bmmpVQnwZevA/b+EOZHoeJsDN87HGAhtRTNCcnyyHVNx7VxTPegnAmDFrOcjiYpTA5Jat3swtHD9rhoD/5I8eHg0B282MTHplWQ7S1YuD+C4IJ1GmER9vz8EAey4NLurbJHMLPPXcTAoGBAN4dgPTadZtya4dTJpGBN0KffLzcu8vOY8kFHbwKvY778L00q//GjYucLVgsW3UkbxTqjCHxQf9qeMojXcBmjRs6kZ/JYNpS4jYvZ3Yf+Jx1VSSrLYbWGY+tBO/zVabyvGe6dbjSgyRBnGdV/22LgX4vSNJxfDjFwotOMfYpdFpPAoGBAJ0apndAYbgR8eWH6sTzTebe7F7MjFuh5Ag+0j3KTyAldztp4+d2NO0dlLf+7pu7Eoy0JLwS464Z8kk5Y5yX2TJfetIzT9bXgHKCRZmQCD/48954G9ExBHNW6AZkyQ/6bVZZ7Gfx2vte539B3mIvjqSl4/sRFwGhi0I8PPOxuSjbAoGBAJJxL1nAQvQXL1AMgYxDfnSdhHdcrTCFRgL+LYmSJ0KDV0jX1mMPvLkEYl0U+cO1HsvSjEvArfvBbhwPzzsQIg6GwgZwlju7k8uX24XlNFurfFRty9lvhXDV6UBu1dT5i0B0jjMqEC6yV3VGHN9TsC/K6x9clUM1F7wS9RvQXxc/AoGAH6FIsmLNDJkwOntyy/XayRbyDAf6oktVvjRlRoUDhwaKzgCqeZ601gJT6naO8Jovh30wLbSHrflhM2oy8Wyi0dknGnPHm0QifmI+JSYMBVwS267j8OcDROWJ04zHbv20jgi5y8myV7jzbnU01MUyhoOiX1f3gU7OzkKKqcG4IPU=
-                 */
                 
-                 /*
+                 MIIEogIBAAKCAQEA08kDVqVGCWZdvapAxX6tKrgOXqq9WAxrYRX/4WSLuhrOlHf3KtzfrccGjgjYRwb9FnPLMd3TkDWUR62u9HEcK93cRpQHklSOxuQxXc+8EjP7JNb9oRYZGnNBIAKztEO11Eo6q/TJNalca+aPTXWY+DxZ+O6xn9t9sVPD4zzcpFkHkDDd2on7ub9EPwAwl4rfy2n4/foPuEbxQehGFCpb3eb8pLOxQUi1OKyFmrtQ4MFIYg0Xussx3PON38R7bWv+4oZgy0mz8a/UyPOAb2zxn7M8NMjfbVtCK9XWqHWj80KGU8La94OHYMTV5QYAxQsBrrc3lnUHWELZSCwnj3Bs3QIDAQABAoH/HZgE08VEhCMD9ln2+OfGSuBtUCpF1rZxM4iN/s4CW1CSMEQ2IruL+msPc8mCzGoKrccMHcjV6kU1UEMvDITwR+shXLtp9logU5NJr8aRpCgTtdf33twUvTS62VWHUp2X7dgUcgorWXcuIYitfaVxI216Dc7v1KDizJM5Y3vjh58FJwzbZXMjRURTRmk3z+LRXwdz9Nh08rBDHtOr9fhuFlyiYKVqNVa5faGFv/1sWtdhxY3exkbUf99z8VH+EPc3W1iG73uBSpUtNGKODMakOxN5faKNH4sl+MXVUjfpSn1+LUij9owXl1pnspIs/AQk/KqA9lBd+kuKyVTiE4uPAoGBAPQYFFroalVEwaYtKv4Zz5gT+Y2OB5ZjJ5bmmpVQnwZevA/b+EOZHoeJsDN87HGAhtRTNCcnyyHVNx7VxTPegnAmDFrOcjiYpTA5Jat3swtHD9rhoD/5I8eHg0B282MTHplWQ7S1YuD+C4IJ1GmER9vz8EAey4NLurbJHMLPPXcTAoGBAN4dgPTadZtya4dTJpGBN0KffLzcu8vOY8kFHbwKvY778L00q//GjYucLVgsW3UkbxTqjCHxQf9qeMojXcBmjRs6kZ/JYNpS4jYvZ3Yf+Jx1VSSrLYbWGY+tBO/zVabyvGe6dbjSgyRBnGdV/22LgX4vSNJxfDjFwotOMfYpdFpPAoGBAJ0apndAYbgR8eWH6sTzTebe7F7MjFuh5Ag+0j3KTyAldztp4+d2NO0dlLf+7pu7Eoy0JLwS464Z8kk5Y5yX2TJfetIzT9bXgHKCRZmQCD/48954G9ExBHNW6AZkyQ/6bVZZ7Gfx2vte539B3mIvjqSl4/sRFwGhi0I8PPOxuSjbAoGBAJJxL1nAQvQXL1AMgYxDfnSdhHdcrTCFRgL+LYmSJ0KDV0jX1mMPvLkEYl0U+cO1HsvSjEvArfvBbhwPzzsQIg6GwgZwlju7k8uX24XlNFurfFRty9lvhXDV6UBu1dT5i0B0jjMqEC6yV3VGHN9TsC/K6x9clUM1F7wS9RvQXxc/AoGAH6FIsmLNDJkwOntyy/XayRbyDAf6oktVvjRlRoUDhwaKzgCqeZ601gJT6naO8Jovh30wLbSHrflhM2oy8Wyi0dknGnPHm0QifmI+JSYMBVwS267j8OcDROWJ04zHbv20jgi5y8myV7jzbnU01MUyhoOiX1f3gU7OzkKKqcG4IPU=
+                 
+                
+                 
 
                  
                 string open = ImportPublicKey(op).ToXmlString(false);
@@ -91,7 +91,7 @@ namespace MessageApp
                 richTextBox3.Text += decrypt11(todecrypt, close);
                 
 
-                */
+                
 
 
                 //richTextBox3.Text += decript(BytesToString(Encoding.UTF8.GetBytes(todecrypt)), close);
@@ -106,7 +106,7 @@ namespace MessageApp
                 
                 
                 
-                /*
+                
                 string open = ImportPublicKey(op).ToXmlString(false);
                 string close = ImportPrivateKey(pop).ToXmlString(true);
 
@@ -122,13 +122,13 @@ namespace MessageApp
 
                 RSACryptoServiceProvider RsaKey = new RSACryptoServiceProvider();
                 richTextBox1.Text += ExportPublicKey(RsaKey)+"\n";
-                richTextBox1.Text += ExportPrivateKey(RsaKey);*/
+                richTextBox1.Text += ExportPrivateKey(RsaKey);
             }
+            */
 
 
 
-
-            //richTextBox3.Text += GetMessage(textBox1.Text, textBox2.Text, openkey, richTextBox1);
+            richTextBox3.Text += GetMessage(textBox1.Text, textBox2.Text, myToken, openkey, closekey, richTextBox1);
         }
         public static string decrypt(string text, string privateKey)
         {
@@ -369,28 +369,42 @@ namespace MessageApp
             return decrypt(EnId, closekey).Split('|')[1];
         }
 
-        public static string SendMessage(string uri, string myname, string Recipient, string messageText, string Token, RichTextBox richTextBox)
+        public static string SendMessage(string uri, string myname, string Recipient, string messageText, string Token, string openkey, string closekey, RichTextBox richTextBox)
         {
-            string BaseUri = uri + "sendmessage";
+            string _myToken = Guid.NewGuid().ToString();
             string json = "";
+            string _openkey = GetResponseString(uri + "getkeyxml", json).Split(':')[1].Trim('}').Trim('"');
+            string _serverToken = GetConfurm(uri, myname, _myToken, 2, _openkey, openkey, closekey);
+
+
+            string BaseUri = uri + "sendmessage";
             string RecipientKey = GetResponseString(uri + "getuserkey", json);
 
             string enMessage = messageText;//encript(messageText, RecipientKey);
-            string hash = CreateMD5(Token + enMessage);
-            json = "{" + $"\"Sender\":\"{myname}\", \"Recipient\":\"{Recipient}\", \"Hash\":\"{hash}\", \"messageText\":\"{messageText}\"" + "}";
+            string hash = CreateMD5(Token + enMessage + _serverToken);
+            json = "{" + $"\"Sender\":\"{CreateMD5(myname)}\", \"Recipient\":\"{CreateMD5(Recipient)}\", \"Hash\":\"{hash}\", \"messageText\":\"{messageText}\"" + "}";
             string answer = GetResponseString(BaseUri, json);
             richTextBox.Text += answer + "\n";
             return answer;
         }
 
-        public static string GetMessage(string uri, string myname, string openkey, RichTextBox richTextBox)
+        public static string GetMessage(string uri, string myname, string Token, string openkey, string closekey,RichTextBox richTextBox)
         {
-            string BaseUri = uri + "getmessages";
+            string _myToken = Guid.NewGuid().ToString();
             string json = "";
-            string _openkey = GetResponseString(uri + "getkey", json).Split(':')[1].Trim('}').Trim('"');
-            string _name = encrypt(myname, _openkey);
-            json = "{" + $"\"Name\":\"{_name}\", \"openkey\":\"{openkey}\"" + "}";
+            string _openkey = GetResponseString(uri + "getkeyxml", json).Split(':')[1].Trim('}').Trim('"');
+            string _serverToken = GetConfurm(uri, myname, _myToken, 3, _openkey, openkey, closekey);
+
+
+            string BaseUri = uri + "getmessages";
+
+            string _name = CreateMD5(myname);
+            string _hash = CreateMD5(Token + _name + _serverToken);
+            json = "{" + $"\"Name\":\"{_name}\", \"openkey\":\"{openkey}\", \"hashkey\":\"{_hash}\"" + "}";
             string answer = GetResponseString(BaseUri, json);
+
+            //decrypt
+
             richTextBox.Text += answer + "\n";
             return answer;
         }
