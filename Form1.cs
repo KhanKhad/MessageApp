@@ -30,12 +30,19 @@ namespace MessageApp
         {
             InitializeComponent();
         }
-        private static string GetResponseString(string BaseUri, string json)
+        private static string GetResponseStringPost(string BaseUri, string json)
         {
             var httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, BaseUri);
             request.Content = new StringContent(json, Encoding.UTF8, "application/json");
+            return httpClient.SendAsync(request).Result.Content.ReadAsStringAsync().Result;
+        }
+        private static string GetResponseStringGet(string BaseUri, string json)
+        {
+            var httpClient = new HttpClient();
+            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, BaseUri);
             return httpClient.SendAsync(request).Result.Content.ReadAsStringAsync().Result;
         }
         private void button1_Click(object sender, EventArgs e)
@@ -128,7 +135,7 @@ namespace MessageApp
 
 
 
-            richTextBox3.Text += GetMessage(textBox1.Text, textBox2.Text, myToken, openkey, closekey, richTextBox1);
+            GetMessage(textBox1.Text, textBox2.Text, myToken, openkey, closekey, richTextBox3);
         }
         public static string decrypt(string text, string privateKey)
         {
@@ -328,7 +335,7 @@ namespace MessageApp
         public static string GetConfurm(string uri, string name, string myToken, int opId, string openkeyserver, string openkey, string privateKey)
         {
             string json = "{" + $"\"operationId\":\"{encrypt(opId.ToString(), openkeyserver)}\", \"hashName\":\"{encrypt(CreateMD5(name), openkeyserver)}\", \"confurmStringClient\":\"{encrypt(myToken, openkeyserver)}\", \"openkey\":\"{openkey}\"" + "}";
-            string answer = GetResponseString(uri + "getconfurm", json);
+            string answer = GetResponseStringPost(uri + "getconfurm", json);
             string serverTokenEncrypted = answer.Split(':')[1].Trim('}').Trim('"');
             string serverToken = decrypt(serverTokenEncrypted, privateKey);
             return serverToken.Split('|')[1];
@@ -336,7 +343,7 @@ namespace MessageApp
         public static string GetConfurm(string uri, string name, string myToken, int opId, string openkeyserver, string openkey, string privateKey, RichTextBox rich)
         {
             string json = "{" + $"\"operationId\":\"{encrypt(opId.ToString(), openkeyserver)}\", \"hashName\":\"{encrypt(CreateMD5(name), openkeyserver)}\", \"confurmStringClient\":\"{encrypt(myToken, openkeyserver)}\", \"openkey\":\"{openkey}\"" + "}";
-            string answer = GetResponseString(uri + "getconfurm", json);
+            string answer = GetResponseStringPost(uri + "getconfurm", json);
             rich.Text += answer+"\n";
             string serverTokenEncrypted = answer.Split(':')[1].Trim('}').Trim('"');
             string serverToken = decrypt(serverTokenEncrypted, privateKey);
@@ -347,14 +354,14 @@ namespace MessageApp
         {
             string _myToken = Guid.NewGuid().ToString();
             string json = "";
-            string _openkey = GetResponseString(uri + "getkeyxml", json).Split(':')[1].Trim('}').Trim('"');
+            string _openkey = GetResponseStringPost(uri + "getkeyxml", json).Split(':')[1].Trim('}').Trim('"');
             string _serverToken = GetConfurm(uri, name, _myToken, 0, _openkey, openkey, closekey);
 
             string BaseUri = uri + "registration";
             string _name = encrypt(_serverToken + "|" + name + "|" + _myToken, _openkey);
             string _pass = encrypt(_myToken + "|" + pass + "|" + _serverToken, _openkey);
             json = "{" + $"\"Name\":\"{_name}\", \"openkey\":\"{openkey}\", \"Password\":\"{_pass}\"" + "}";
-            string answer = GetResponseString(BaseUri, json);
+            string answer = GetResponseStringPost(BaseUri, json);
             string EnId = answer.Substring(9).TrimEnd('}').Trim('"');
             return decrypt(EnId, closekey).Split('|')[1];
         }
@@ -363,14 +370,14 @@ namespace MessageApp
         {
             string _myToken = Guid.NewGuid().ToString();
             string json = "";
-            string _openkey = GetResponseString(uri + "getkeyxml", json).Split(':')[1].Trim('}').Trim('"');
+            string _openkey = GetResponseStringPost(uri + "getkeyxml", json).Split(':')[1].Trim('}').Trim('"');
             string _serverToken = GetConfurm(uri, name, _myToken, 1, _openkey, openkey, closekey);
 
             string BaseUri = uri + "authorization";
             string _name = encrypt(_serverToken + "|" + name + "|" + _myToken, _openkey);
             string _pass = encrypt(_myToken + "|" + pass + "|" + _serverToken, _openkey);
             json = "{" + $"\"Name\":\"{_name}\", \"openkey\":\"{openkey}\", \"Password\":\"{_pass}\"" + "}";
-            string answer = GetResponseString(BaseUri, json);
+            string answer = GetResponseStringPost(BaseUri, json);
             string EnId = answer.Substring(9).TrimEnd('}').Trim('"');
             return decrypt(EnId, closekey).Split('|')[1];
         }
@@ -379,18 +386,17 @@ namespace MessageApp
         {
             string _myToken = Guid.NewGuid().ToString();
             string json = "";
-            string _openkey = GetResponseString(uri + "getkeyxml", json).Split(':')[1].Trim('}').Trim('"');
+            string _openkey = GetResponseStringPost(uri + "getkeyxml", json).Split(':')[1].Trim('}').Trim('"');
             string _serverToken = GetConfurm(uri, myname, _myToken, 2, _openkey, openkey, closekey);
 
 
             string BaseUri = uri + "sendmessage";
-            string RecipientKey = GetResponseString(uri + "getuserkey?recipient="+Recipient, json);
-            richTextBox.Text += RecipientKey + "\n";
+            string RecipientKey = GetResponseStringGet(uri + "getuserkeyxml?recipient=" + Recipient, json).Split(':')[1].Trim('}').Trim('"');
 
-            string enMessage = myname + "|" + messageText;//encript(messageText, RecipientKey);
+            string enMessage = encrypt(myname + "|" + messageText, RecipientKey);
             string hash = CreateMD5(Token + enMessage + _serverToken);
             json = "{" + $"\"Sender\":\"{CreateMD5(myname)}\", \"Recipient\":\"{CreateMD5(Recipient)}\", \"Hash\":\"{hash}\", \"messageText\":\"{enMessage}\"" + "}";
-            string answer = GetResponseString(BaseUri, json);
+            string answer = GetResponseStringPost(BaseUri, json);
             richTextBox.Text += answer + "\n";
             return answer;
         }
@@ -399,27 +405,26 @@ namespace MessageApp
         {
             string _myToken = Guid.NewGuid().ToString();
             string json = "";
-            string _openkey = GetResponseString(uri + "getkeyxml", json).Split(':')[1].Trim('}').Trim('"');
+            string _openkey = GetResponseStringPost(uri + "getkeyxml", json).Split(':')[1].Trim('}').Trim('"');
             string _serverToken = GetConfurm(uri, myname, _myToken, 3, _openkey, openkey, closekey);
-
 
             string BaseUri = uri + "getmessages";
 
             string _name = CreateMD5(myname);
             string _hash = CreateMD5(Token + _name + _serverToken);
             json = "{" + $"\"Name\":\"{_name}\", \"openkey\":\"{openkey}\", \"hashkey\":\"{_hash}\"" + "}";
-            string answer = GetResponseString(BaseUri, json).Substring(19).TrimEnd('}').TrimEnd('"');
-
-            //decrypt
-
-            string sendername = answer.Split('|')[3];
-            if (answer.Split('|')[2].Equals(CreateMD5(sendername)))
-            {
-                richTextBox.Text += true + "\n";
-            }
+            string answer = GetResponseStringPost(BaseUri, json).Substring(19).TrimEnd('}').TrimEnd('"');
             
+            foreach (string line in answer.Substring(15).Trim('}').Trim('"').Split('#'))
+            {
+                string text = decrypt(line.Split('|')[3], closekey);
+                string sendername = text.Split('|')[0];
+                if (answer.Split('|')[2].Equals(CreateMD5(sendername)))
+                {
+                    richTextBox.Text += sendername + " : " + text.Split('|')[1] + "\n";
+                }
+            }
 
-            richTextBox.Text += answer + "\n";
             return answer;
         }
 
@@ -427,10 +432,10 @@ namespace MessageApp
         {
             string BaseUri = uri + "checkMessagesInfo";
             string json = "";
-            string _openkey = GetResponseString(uri + "getkey", json).Split(':')[1].Trim('}').Trim('"');
+            string _openkey = GetResponseStringPost(uri + "getkeyxml", json).Split(':')[1].Trim('}').Trim('"');
             string _name = encrypt(myname, _openkey);
             json = "{" + $"\"Name\":\"{_name}\", \"openkey\":\"{openkey}\"" + "}";
-            string answer = GetResponseString(BaseUri, json);
+            string answer = GetResponseStringPost(BaseUri, json);
             richTextBox.Text += answer + "\n";
             return answer;
         }
@@ -595,6 +600,11 @@ namespace MessageApp
                 }
                 return sb.ToString();
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            textBox1.Text = "http://178.21.10.180/";
         }
     }
 }
