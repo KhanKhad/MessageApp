@@ -15,6 +15,7 @@ using Org.BouncyCastle.Security;
 using System.IO;
 using Org.BouncyCastle.OpenSsl;
 using Org.BouncyCastle.Crypto.Parameters;
+using System.Net;
 
 namespace MessageApp
 {
@@ -44,6 +45,26 @@ namespace MessageApp
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, BaseUri);
             return httpClient.SendAsync(request).Result.Content.ReadAsStringAsync().Result;
+        }
+
+
+        private string Upload(string actionUrl, string paramString, Stream paramFileStream, byte[] paramFileBytes)
+        {
+            HttpContent stringContent = new StringContent(paramString);
+            HttpContent fileStreamContent = new StreamContent(paramFileStream);
+            HttpContent bytesContent = new ByteArrayContent(paramFileBytes);
+            using (var client = new HttpClient())
+            using (var formData = new MultipartFormDataContent())
+            {
+                formData.Add(new StringContent("fdfg"), "param1");
+                formData.Add(new StringContent("fdg"), "username");
+                //formData.Add(fileStreamContent, "file1.docx", "file1");
+                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, actionUrl);
+                formData.Add(bytesContent, "file2", "file2.docx");
+                
+                var response = client.PostAsync(actionUrl, formData);
+                return response.Result.Content.ReadAsStringAsync().Result;
+            }
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -81,7 +102,11 @@ namespace MessageApp
 
         private void button4_Click(object sender, EventArgs e)
         {
-            GetMessage(textBox1.Text, textBox2.Text, myToken, openkey, closekey, richTextBox3);
+
+            //GetMessage(textBox1.Text, textBox2.Text, myToken, openkey, closekey, richTextBox3);
+            string openkeyserver = GetResponseStringPost(textBox1.Text + "getkeyxml", "").Split(':')[1].Trim('}').Trim('"');
+            string json = "{" + $"\"operationId\":\"{encrypt("0", openkeyserver)}\", \"hashName\":\"{encrypt(CreateMD5("dfsdsf"), openkeyserver)}\", \"confurmStringClient\":\"{encrypt("fdfdsdfdf", openkeyserver)}\", \"openkey\":\"{openkey}\"" + "}";
+            richTextBox1.Text += Upload(textBox1.Text + "filesupload", "", File.OpenRead("D://download//we.docx"), new StreamContent(File.OpenRead("D://download//lab3.docx")).ReadAsByteArrayAsync().Result);
         }
         public static string decrypt(string text, string privateKey)
         {
@@ -345,8 +370,11 @@ namespace MessageApp
             string answer = GetResponseStringPost(BaseUri, json);
             richTextBox.Text += answer + "\n";
             return answer;
-        }
 
+
+
+            
+        }
         public static string GetMessage(string uri, string myname, string Token, string openkey, string closekey,RichTextBox richTextBox)
         {
             string _myToken = Guid.NewGuid().ToString();
