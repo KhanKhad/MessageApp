@@ -59,11 +59,13 @@ namespace MessageApp
                 formData.Add(new StringContent("fdfg"), "param1");
                 formData.Add(new StringContent("fdg"), "username");
                 //formData.Add(fileStreamContent, "file1.docx", "file1");
-                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, actionUrl);
                 formData.Add(bytesContent, "file2", "file2.docx");
                 
                 var response = client.PostAsync(actionUrl, formData);
-                return response.Result.Content.ReadAsStringAsync().Result;
+
+                File.WriteAllBytes("D://download//we2.docx", response.Result.Content.ReadAsByteArrayAsync().Result);
+
+                return ""; //response.Result.Content.ReadAsStringAsync().Result;
             }
         }
         private void button1_Click(object sender, EventArgs e)
@@ -104,13 +106,20 @@ namespace MessageApp
         {
 
             //GetMessage(textBox1.Text, textBox2.Text, myToken, openkey, closekey, richTextBox3);
-            string openkeyserver = GetResponseStringPost(textBox1.Text + "getkeyxml", "").Split(':')[1].Trim('}').Trim('"');
-            string json = "{" + $"\"operationId\":\"{encrypt("0", openkeyserver)}\", \"hashName\":\"{encrypt(CreateMD5("dfsdsf"), openkeyserver)}\", \"confurmStringClient\":\"{encrypt("fdfdsdfdf", openkeyserver)}\", \"openkey\":\"{openkey}\"" + "}";
             richTextBox1.Text += Upload(textBox1.Text + "filesupload", "", File.OpenRead("D://download//we.docx"), new StreamContent(File.OpenRead("D://download//lab3.docx")).ReadAsByteArrayAsync().Result);
         }
         public static string decrypt(string text, string privateKey)
         {
             byte[] cypherText = Convert.FromBase64String(text);
+            using (var rsa = new RSACryptoServiceProvider())
+            {
+                rsa.FromXmlString(privateKey);
+                var bytesText = rsa.Decrypt(cypherText, false);
+                return Encoding.UTF8.GetString(bytesText);
+            }
+        }
+        public static string decrypt(byte[] cypherText, string privateKey)
+        {
             using (var rsa = new RSACryptoServiceProvider())
             {
                 rsa.FromXmlString(privateKey);
@@ -488,7 +497,31 @@ namespace MessageApp
             }
             return Eid;
         }
+        public static string encrypt(byte[] IdToEncode, string OpenKey)
+        {
+            string Eid;
+            try
+            {
+                RSACryptoServiceProvider RSA_ = new RSACryptoServiceProvider();
 
+                RSA_.FromXmlString(OpenKey);
+
+                UnicodeEncoding ByteConverter = new UnicodeEncoding();
+
+                byte[] EncodedId;
+
+                EncodedId = RSAEncrypt(IdToEncode, RSA_.ExportParameters(false), false);
+
+                Eid = Convert.ToBase64String(EncodedId);
+
+            }
+            catch (ArgumentNullException)
+            {
+                Console.WriteLine("Encryption failed.");
+                Eid = null;
+            }
+            return Eid;
+        }
         private static byte[] StringToBytes(string toEncrypt)
         {
             var a = toEncrypt.Split('|');
