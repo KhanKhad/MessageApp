@@ -105,8 +105,9 @@ namespace MessageApp
         private void button4_Click(object sender, EventArgs e)
         {
 
-            //GetMessage(textBox1.Text, textBox2.Text, myToken, openkey, closekey, richTextBox3);
-            richTextBox1.Text += Upload(textBox1.Text + "filesupload", "", File.OpenRead("D://download//we.docx"), new StreamContent(File.OpenRead("D://download//lab3.docx")).ReadAsByteArrayAsync().Result);
+            //richTextBox1.Text += decrypt(richTextBox3.Text, closekey);
+            GetMessage(textBox1.Text, textBox2.Text, myToken, openkey, closekey, richTextBox3);
+            //richTextBox1.Text += Upload(textBox1.Text + "filesupload", "", File.OpenRead("D://download//we.docx"), new StreamContent(File.OpenRead("D://download//lab3.docx")).ReadAsByteArrayAsync().Result);
         }
         public static string decrypt(string text, string privateKey)
         {
@@ -306,6 +307,9 @@ namespace MessageApp
             RSAKeyGenerator(out openkey, out closekey);
             richTextBox1.Text += openkey + "\n";
             richTextBox1.Text += closekey + "\n";
+            RSACryptoServiceProvider RsaKey = new RSACryptoServiceProvider();
+            RsaKey.FromXmlString(openkey);
+            richTextBox1.Text += ExportPublicKey(RsaKey) + "\n";
         }
         private void button6_Click(object sender, EventArgs e)
         {
@@ -369,7 +373,6 @@ namespace MessageApp
             string _openkey = GetResponseStringPost(uri + "getkeyxml", json).Split(':')[1].Trim('}').Trim('"');
             string _serverToken = GetConfurm(uri, myname, _myToken, 2, _openkey, openkey, closekey);
 
-
             string BaseUri = uri + "sendmessage";
             string RecipientKey = GetResponseStringGet(uri + "getuserkeyxml?recipient=" + Recipient, json).Split(':')[1].Trim('}').Trim('"');
 
@@ -397,16 +400,22 @@ namespace MessageApp
             string _hash = CreateMD5(Token + _name + _serverToken);
             json = "{" + $"\"Name\":\"{_name}\", \"openkey\":\"{openkey}\", \"hashkey\":\"{_hash}\"" + "}";
             string answer = GetResponseStringPost(BaseUri, json).Substring(19).TrimEnd('}').TrimEnd('"');
-            
-            foreach (string line in answer.Trim('}').Trim('"').Split('#'))
+            try
             {
-                string text = decrypt(line.Split('|')[3], closekey);
-                string sendername = text.Split('|')[0];
-                if (line.Split('|')[2].Equals(CreateMD5(sendername)))
+                foreach (string line in answer.Trim('}').Trim('"').Split('#'))
                 {
-                    richTextBox.Text += line.Split('|')[0] + " : " + sendername + " : " + text.Split('|')[1] + "\n";
+                    string text = decrypt(line.Split('|')[3], closekey);
+                    string sendername = text.Split('|')[0];
+                    if (line.Split('|')[2].Equals(CreateMD5(sendername)))
+                    {
+                        richTextBox.Text += line.Split('|')[0] + " : " + sendername + " : " + text.Split('|')[1] + "\n";
+                    }
                 }
             }
+            catch
+            {
+                richTextBox.Text += "You havent new messages\n";
+            } 
 
             return answer;
         }
